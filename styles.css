@@ -1,0 +1,263 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            padding: 20px;
+            position: fixed; /* Fix the body to prevent movement */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .calculator-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            height: 100%;
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .calculator-heading {
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .calculator-heading h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .calculator-heading p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .calculator {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .display {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 25px 20px;
+            text-align: right;
+            font-size: 2.5rem;
+            min-height: 120px;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            flex-shrink: 0;
+        }
+        
+        .display .previous-operand {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            min-height: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .display .current-operand {
+            font-size: 2.5rem;
+            color: white;
+            min-height: 50px;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            flex: 1;
+        }
+        
+        button {
+            border: none;
+            background-color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+            border-radius: 12px;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        button:active {
+            background-color: #e0e0e0;
+            transform: scale(0.98);
+        }
+        
+        .operator {
+            background-color: #f9f9f9;
+            color: #6e8efb;
+            font-weight: bold;
+        }
+        
+        .equals {
+            background-color: #6e8efb;
+            color: white;
+        }
+        
+        .equals:hover {
+            background-color: #5a7df9;
+        }
+        
+        .clear, .delete {
+            background-color: #ff9a9e;
+            color: white;
+        }
+        
+        .clear:hover, .delete:hover {
+            background-color: #ff7b81;
+        }
+        
+        .recall {
+            background-color: #a8e6cf;
+            color: #2d7a5c;
+            font-weight: bold;
+        }
+        
+        .recall:hover {
+            background-color: #93d9bf;
+        }
+        
+        .span-two {
+            grid-column: span 2;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            background-color: #ffe6e6;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #ffcccc;
+            display: none;
+            flex-shrink: 0;
+        }
+        
+        /* Mobile full-screen styles */
+        @media (max-width: 480px) {
+            body {
+                padding: 0;
+                background: white;
+                justify-content: flex-start;
+            }
+            
+            .calculator-container {
+                max-width: 100%;
+                height: 100%;
+                max-height: none;
+            }
+            
+            .calculator-heading {
+                display: none;
+            }
+            
+            .calculator {
+                border-radius: 0;
+                box-shadow: none;
+                height: 100%;
+            }
+            
+            .display {
+                padding: 40px 20px;
+                font-size: 3rem;
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+            
+            .display .previous-operand {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            
+            .display .current-operand {
+                font-size: 3.5rem;
+            }
+            
+            .buttons {
+                gap: 1px;
+                background-color: rgba(0, 0, 0, 0.1);
+                padding: 10px;
+            }
+            
+            button {
+                font-size: 1.8rem;
+                border-radius: 12px;
+                margin: 2px;
+            }
+            
+            .error {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Landscape mode for mobile */
+        @media (max-width: 480px) and (orientation: landscape) {
+            .calculator-container {
+                height: 100%;
+            }
+            
+            .display {
+                padding: 20px;
+            }
+            
+            .display .current-operand {
+                font-size: 2.5rem;
+            }
+            
+            .buttons {
+                padding: 8px;
+            }
+            
+            button {
+                font-size: 1.5rem;
+                border-radius: 10px;
+                margin: 1px;
+            }
+        }
